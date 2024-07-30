@@ -26,29 +26,39 @@ IndiGoHack is a web application designed to manage flight notifications. The app
 - **File**: 
 - **Description**: Allows admin users to log in using their email and password. Upon successful login, the user is redirected to the admin dashboard.
 
+![alt text](image.png)
+
 ### Flight Management
 - **File**: 
 - **Description**: Admins can update flight details such as flight number, departure, arrival, date, status, and current status (delay, cancellation, gate change, gate number, landing time).
+
+![alt text](image-1.png)
 
 ### Flight Status
 - **File**: 
 - **Description**: Displays the status of all flights with filtering options for flight number, departure, arrival, status, gate change, gate number, and time of day (morning, evening, night).
 
+![alt text](image-2.png)
+
 ### Flight Table
 - **File**: 
 - **Description**: Renders a table of flight information.
 
+![alt text](image-3.png)
+
 ### Add New Flight
 - **File**: 
 - **Description**: Admins can add new flights with details such as flight number, departure, arrival, date, status, and current status.
-
+![alt text](image-4.png)
 ### Layout and Footer
 - **Files**: 
 - **Description**: Provides a consistent layout and footer for the application.
-
+![alt text](image-5.png)
 ### Admin Dashboard
 - **File**:
 - **Description**: Admin dashboard with navigation to different sections like home, all notify users, flight status, all flights, and add flights.
+
+![alt text](image-6.png)
 
 ### Notification Management
 - **File**:
