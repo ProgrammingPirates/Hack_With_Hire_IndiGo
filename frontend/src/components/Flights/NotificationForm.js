@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
-import axios from 'axios'; // For making HTTP requests
-import Layout from '../Layout/Layout'
+import axios from 'axios';
+import Layout from '../Layout/Layout';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const baseURL = process.env.REACT_APP_API_BASE_URL;
 
@@ -13,6 +15,10 @@ const NotificationForm = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (!fullName || !email || !contactNumber || !flightNumber) {
+      toast.error('Please fill in all required fields.');
+      return;
+    }
     try {
       await axios.post(`${baseURL}/api/v1/notification/notifications`, {
         fullName,
@@ -21,8 +27,7 @@ const NotificationForm = () => {
         flightNumber,
         notificationType
       });
-      alert('Notification preference saved successfully!');
-      // Clear form fields after submission
+      toast.success('Notification preference saved successfully!');
       setFullName('');
       setEmail('');
       setContactNumber('');
@@ -30,13 +35,13 @@ const NotificationForm = () => {
       setNotificationType('email');
     } catch (error) {
       console.error('Error submitting form:', error);
-      // Display more detailed error message
-      alert(`Failed to save notification preference. ${error.response ? error.response.data.message : error.message}`);
+      toast.error(`Failed to save notification preference. ${error.response ? error.response.data.message : error.message}`);
     }
   };
 
   return (
     <Layout title={'Get Update'}>
+      <ToastContainer position="top-right" autoClose={5000} hideProgressBar={false} newestOnTop={false} closeOnClick rtl={false} pauseOnFocusLoss draggable pauseOnHover />
       <div
         style={{ animation: 'slideInFromLeft 1s ease-out' }}
         className="max-w-md mx-auto p-6 bg-gradient-to-r from-blue-800 to-purple-600 rounded-xl shadow-2xl overflow-hidden space-y-8"
@@ -64,6 +69,7 @@ const NotificationForm = () => {
               type="text"
               value={fullName}
               onChange={(e) => setFullName(e.target.value)}
+              onBlur={() => toast.info('Full Name field updated')}
             />
             <label
               className="absolute left-0 -top-3.5 text-gray-500 text-sm transition-all peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-400 peer-placeholder-shown:top-2 peer-focus:-top-3.5 peer-focus:text-purple-500 peer-focus:text-sm"
@@ -82,6 +88,7 @@ const NotificationForm = () => {
               type="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
+              onBlur={() => toast.info('Email Address field updated')}
             />
             <label
               className="absolute left-0 -top-3.5 text-gray-500 text-sm transition-all peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-400 peer-placeholder-shown:top-2 peer-focus:-top-3.5 peer-focus:text-purple-500 peer-focus:text-sm"
@@ -100,6 +107,7 @@ const NotificationForm = () => {
               type="text"
               value={contactNumber}
               onChange={(e) => setContactNumber(e.target.value)}
+              onBlur={() => toast.info('Contact Number field updated')}
             />
             <label
               className="absolute left-0 -top-3.5 text-gray-500 text-sm transition-all peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-400 peer-placeholder-shown:top-2 peer-focus:-top-3.5 peer-focus:text-purple-500 peer-focus:text-sm"
@@ -118,6 +126,7 @@ const NotificationForm = () => {
               type="text"
               value={flightNumber}
               onChange={(e) => setFlightNumber(e.target.value)}
+              onBlur={() => toast.info('Flight Number field updated')}
             />
             <label
               className="absolute left-0 -top-3.5 text-gray-500 text-sm transition-all peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-400 peer-placeholder-shown:top-2 peer-focus:-top-3.5 peer-focus:text-purple-500 peer-focus:text-sm"

@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import ReactDOM from 'react-dom';
 import axios from 'axios';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const baseURL = process.env.REACT_APP_API_BASE_URL;
 
@@ -27,12 +29,15 @@ const Register = ({ isOpen, onClose }) => {
 
       if (response.status === 201) {
         setSuccessMessage('User registered successfully');
+        toast.success('🎉 Registration successful! Welcome aboard!');
       }
     } catch (error) {
       if (error.response && error.response.data && error.response.data.message) {
         setErrorMessage(error.response.data.message);
+        toast.error(`⚠️ ${error.response.data.message}`);
       } else {
         setErrorMessage('An error occurred. Please try again.');
+        toast.error('⚠️ An error occurred. Please try again.');
       }
     }
   };
@@ -45,6 +50,7 @@ const Register = ({ isOpen, onClose }) => {
         className="relative max-w-md w-full bg-gradient-to-r from-blue-800 to-purple-600 rounded-xl shadow-2xl overflow-hidden p-8 space-y-8"
         style={{ animation: 'slideInFromLeft 1s ease-out' }}
       >
+        <ToastContainer position="top-right" autoClose={5000} hideProgressBar={false} newestOnTop={false} closeOnClick rtl={false} pauseOnFocusLoss draggable pauseOnHover />
         <button
           className="absolute top-2 right-2 text-gray-200 hover:text-gray-100"
           onClick={onClose}
@@ -69,7 +75,7 @@ const Register = ({ isOpen, onClose }) => {
           <div className="relative">
             <input
               placeholder="John Doe"
-              className="peer h-10 w-full border-b-2 border-gray-300 text-white bg-transparent placeholder-transparent focus:outline-none focus:border-#0fe0e4-500"
+              className="peer h-10 w-full border-b-2 border-gray-300 text-white bg-transparent placeholder-transparent focus:outline-none focus:border-purple-500"
               value={fullName}
               onChange={(e) => setFullName(e.target.value)}
               required

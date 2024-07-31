@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import ReactDOM from 'react-dom';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const baseURL = process.env.REACT_APP_API_BASE_URL;
 
@@ -28,6 +30,7 @@ const Login = ({ isOpen, onClose }) => {
         localStorage.setItem('user', JSON.stringify(data.user));
         localStorage.setItem('token', data.token);
 
+        toast.success('Login successful!');
         navigate('/admin-dashboard');
       }
     } catch (error) {
@@ -35,8 +38,10 @@ const Login = ({ isOpen, onClose }) => {
 
       if (error.response && error.response.data && error.response.data.message) {
         setErrorMessage(error.response.data.message);
+        toast.error(error.response.data.message);
       } else {
         setErrorMessage('An error occurred. Please try again.');
+        toast.error('An error occurred. Please try again.');
       }
     }
   };
@@ -49,6 +54,7 @@ const Login = ({ isOpen, onClose }) => {
         className="relative max-w-md w-full bg-gradient-to-r from-blue-800 to-purple-600 rounded-xl shadow-2xl overflow-hidden p-8 space-y-8"
         style={{ animation: 'slideInFromLeft 1s ease-out' }}
       >
+        <ToastContainer position="top-right" autoClose={5000} hideProgressBar={false} newestOnTop={false} closeOnClick rtl={false} pauseOnFocusLoss draggable pauseOnHover />
         <button
           className="absolute top-2 right-2 text-gray-200 hover:text-gray-100"
           onClick={onClose}
@@ -59,7 +65,7 @@ const Login = ({ isOpen, onClose }) => {
           className="text-center text-4xl font-extrabold text-white"
           style={{ animation: 'appear 2s ease-out' }}
         >
-          Welcome To Admin Dashboard !
+          Welcome To Admin Dashboard!
         </h2>
         <p
           className="text-center text-gray-200"
@@ -131,7 +137,6 @@ const Login = ({ isOpen, onClose }) => {
             Sign In
           </button>
         </form>
-  
       </div>
     </div>,
     document.body

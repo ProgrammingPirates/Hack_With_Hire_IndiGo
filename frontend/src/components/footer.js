@@ -2,10 +2,7 @@ import React from 'react';
 
 const Footer = () => {
   return (
-<footer class="bg-neutral-100 text-center text-neutral-600 dark:bg-neutral-600 dark:text-neutral-200">
-
-
-  
+<footer class="bg-e3f2ff text-white text-center dark:bg-green-700 dark:text-gray-200">
 
   <div class="mx-6 pt-8 pb-4 text-center">
 
@@ -211,7 +208,7 @@ const Footer = () => {
 
   </div>
 
-  <div class="bg-neutral-200 p-6 text-center dark:bg-neutral-700 flex justify-center items-center">
+  <div class="bg-#000000 p-6 text-center dark:bg-neutral-700 flex justify-center items-center">
 
       <span>© 2024 Copyright: </span>
 

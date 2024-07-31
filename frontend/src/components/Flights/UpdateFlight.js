@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const baseURL = process.env.REACT_APP_API_BASE_URL;
 
@@ -31,6 +33,7 @@ const UpdateFlightForm = ({ flightId, onClose, onSuccess }) => {
           setCurrentStatus(flight.currentStatus);
         } catch (error) {
           console.error('Error fetching flight data:', error);
+          toast.error('Failed to fetch flight data.');
         }
       };
 
@@ -50,19 +53,20 @@ const UpdateFlightForm = ({ flightId, onClose, onSuccess }) => {
           status,
           currentStatus
         });
-        alert('Flight updated successfully!');
+        toast.success('Flight updated successfully!');
         // Notify the parent component
         if (onSuccess) onSuccess();
       }
       if (onClose) onClose(); // Close the modal
     } catch (error) {
       console.error('Error submitting flight:', error);
-      alert('Failed to update flight.');
+      toast.error('Failed to update flight.');
     }
   };
 
   return (
     <div className="max-w-4xl mx-auto p-6 bg-white rounded-lg shadow-lg space-y-8">
+      <ToastContainer position="top-right" autoClose={5000} hideProgressBar={false} newestOnTop={false} closeOnClick rtl={false} pauseOnFocusLoss draggable pauseOnHover />
       <h2 className="text-2xl font-bold text-gray-900 text-center mb-6">Update Flight</h2>
       <form onSubmit={handleSubmit} className="space-y-6">
         {/* Form fields */}
@@ -226,15 +230,14 @@ const UpdateFlightForm = ({ flightId, onClose, onSuccess }) => {
             </label>
           </div>
         </div>
-        <div class="flex justify-center items-center h-full">
-        <button
-          type="submit"
-          class="bg-gradient-to-r from-purple-400 to-blue-500 hover:from-pink-500 hover:to-purple-600 text-white font-bold py-3 px-6 rounded-full shadow-lg transform transition-all duration-500 ease-in-out hover:scale-110 hover:brightness-110 hover:animate-pulse center active:animate-bounce">
-          Update Flight
-        </button>
-      
-</div>
-
+        <div className="flex justify-center items-center h-full">
+          <button
+            type="submit"
+            className="bg-gradient-to-r from-purple-400 to-blue-500 hover:from-pink-500 hover:to-purple-600 text-white font-bold py-3 px-6 rounded-full shadow-lg transform transition-all duration-500 ease-in-out hover:scale-110 hover:brightness-110 hover:animate-pulse center active:animate-bounce"
+          >
+            Update Flight
+          </button>
+        </div>
       </form>
     </div>
   );

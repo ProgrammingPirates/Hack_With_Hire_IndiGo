@@ -87,9 +87,13 @@ const FlightTable = () => {
   <p class="translate-x-2">Noti Send</p>
     </button>
   </Link>
-        <h2 className="text-2xl font-bold mb-6 text-center">Flight Status</h2>
-        
-  
+  <div className="flex justify-center items-center">
+  <h2 class="animate-bounce focus:animate-none hover:animate-none inline-flex text-md font-medium bg-indigo-900 mt-3 px-4 py-2 rounded-lg tracking-wide text-white">
+    <span class="ml-2">Flight Status</span>
+  </h2>
+  </div>
+ 
+
       <div className="mb-4 flex flex-col md:flex-row md:items-center md:justify-between">
         <input
           type="text"
