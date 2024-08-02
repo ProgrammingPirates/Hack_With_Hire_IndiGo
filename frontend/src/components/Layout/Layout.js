@@ -31,9 +31,6 @@ const Layout = ({ children, title, description, keywords, author }) => {
 
 Layout.defaultProps = {
   title: 'Indigo',
-  description: 'This is the a Stm conference website',
-  keywords: 'React, Node js, Mongodb, Express js',
-  author: 'Paritosh',
 };
 
 export default Layout;
